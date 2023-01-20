@@ -15,7 +15,11 @@ a,option{
 }
 
 /* main page */
-
+.error{
+  text-align: center;
+  color: red;
+  font-size: 22px;
+}
 .list-books-title {
   padding: 10px 0;
   background: #2e7c31;
