@@ -1,7 +1,6 @@
 import React from 'react'
 
 function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch}) {
-    console.log(searchBooks[0].imageLinks.thumbnail)
   return (
    
      <>

@@ -21,7 +21,7 @@ function BookShelf(props) {
                               width: 128,
                               height: 193,
                               backgroundImage:
-                                `url(${book.imageLinks.thumbnail}) `,
+                                `url(${book.imageLinks?book.imageLinks.thumbnail:""}) `,
                             }}
                           ></div>
                           <div className="book-shelf-changer">
