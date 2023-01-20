@@ -1,6 +1,7 @@
 import React from 'react'
 
 function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch}) {
+    console.log(searchBooks[0].imageLinks.thumbnail)
   return (
    
      <>
@@ -9,7 +10,8 @@ function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch})
         <h2 className="bookshelf-title">Search Result</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-           {searchBooks.map((book,index)=> <>
+           {searchBooks.map((book,index)=>{
+            return  <div key={book.id}>
             <li key={index}>
               <div className="book">
                 <div className="book-top">
@@ -39,7 +41,9 @@ function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch})
               </div>
             </li>
            
-           </>)}
+           </div>
+           }
+           )}
           </ol>
         </div>
         </div> 

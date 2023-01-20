@@ -15,7 +15,7 @@ function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [allBooks, setAllBooks] = useState([]);
   const [query, setQuery] = useState("");
-  const [searchBooks, setSearchBooks] = useState([]);
+  const [searchBooks, setSearchBooks] = useState("");
   const [searchError, setSearchError] = useState(false);
   const [clearSearch, setClearSearch] = useState(false)
 
@@ -47,21 +47,20 @@ function App() {
   // console.log(e.target.value);
   setQuery(e.target.value);
 }
-//  to handle option of book shelves on search books 
-  let checkShelves = () => {
-    if(searchBooks !== ""){
-      searchBooks.forEach((searchBookElement)=>{
-        allBooks.forEach((allBookElement)=>{
-          if(searchBookElement.id === allBookElement.id){
-            searchBookElement.shelf = allBookElement.shelf
-          }
-        })
-      })
-    }
-    
-  }
-  // -------------------------------------
 
+//  to handle option of book shelves on search books 
+let checkShelves = () => {
+  if(searchBooks !== ""){
+    searchBooks.forEach((searchBookElement)=>{
+      allBooks.forEach((allBookElement)=>{
+        if(searchBookElement.id === allBookElement.id){
+          searchBookElement.shelf = allBookElement.shelf
+        }
+      })
+    })
+  }
+  
+}
 
 
 // calling the search api every time query updated
@@ -76,26 +75,23 @@ useEffect(() => {
         setSearchError(false)
         setClearSearch(false)
         setSearchBooks(res)
-        
 
       }
     } )
   }else if (query===""){
     console.log("empty query")
     setClearSearch(true)
-  
-
     console.log("after setting true")
   }
  
 }, [query])
 console.log(searchBooks)
-checkShelves()  
+
+  
 
    // function to move books between shelves that we searched for
    let moveShelvesSearch = (book,shelfToMoveBookTo)=>{
     console.log("kih")
-    console.log(typeof(searchBooks))
     let updatedBooks = searchBooks; //copy from api books
     let newbooks = updatedBooks.filter((upBook)=>{
       if(upBook.id === book.id){
@@ -103,11 +99,9 @@ checkShelves()
             // update books from api 
         BooksAPI.update(book,shelfToMoveBookTo).then()
         console.log(upBook)
-        
       }return upBook
     }  )
 console.log(newbooks)
-
     // // to remove the search book from search 
     // let filterSearch = updatedBooks.filter((bookRender)=> bookRender.id !== book.id)
     // setSearchBooks(filterSearch)
@@ -117,7 +111,9 @@ console.log(newbooks)
     BooksAPI.update(newbooks,shelfToMoveBookTo).then()
 
     setAllBooks([...allBooks , ...newbooks])
+   
   }
+  checkShelves()
  
   let routes = createBrowserRouter([
     {path:"/", Element:<MasterLayout/>,errorElement:<NotFound/>, children:[
