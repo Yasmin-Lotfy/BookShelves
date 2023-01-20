@@ -5,6 +5,9 @@ import InputSearch from "./InputSearch";
 import Header from "./Header";
 import BooksShelves from "./BooksShelves";
 import * as BooksAPI from "./BooksAPI";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MasterLayout from "./MasterLayout";
+import NotFound from "./NotFound";
 
 
 
@@ -91,30 +94,32 @@ console.log(newbooks)
   console.log(allBooks)
 
  
-  
+  let routes = createBrowserRouter([
+    {path:"/", Element:<MasterLayout/>,errorElement:<NotFound/>, children:[
+      {index:true, element:<>
+       <div className="list-books">
+      {/* header of the app */}
+   <Header/>
+      <div className="list-books-content">
+        <div>
+        {/* start of Books shelves list */}
+        <BooksShelves  moveShelves={moveShelves} allBooks={allBooks} />
+        </div>
+      </div>
+
+      {/* search Button to open the input field to get books from api */}
+    <SearchBtn setSearchBooks={setSearchBooks} setShowSearchpage={setShowSearchpage} showSearchPage={showSearchPage}/>
+    
+    </div>
+    </>},
+    {path:"search",element:<InputSearch clearSearch={clearSearch} searchError={searchError} moveShelvesSearch={moveShelvesSearch} searchBooks={searchBooks} getSearchBook={getSearchBook} setShowSearchpage={setShowSearchpage} showSearchPage={showSearchPage}/>
+  }
+    ]}
+  ])
  
   return (
-    <div className="app">
-      {showSearchPage ? (
-        // start of input search to get books from api 
-       <InputSearch clearSearch={clearSearch} searchError={searchError} moveShelvesSearch={moveShelvesSearch} searchBooks={searchBooks} getSearchBook={getSearchBook} setShowSearchpage={setShowSearchpage} showSearchPage={showSearchPage}/>
-      ) : (
-        <div className="list-books">
-          {/* header of the app */}
-        <Header/>
-          <div className="list-books-content">
-            <div>
-            {/* start of Books shelves list */}
-            <BooksShelves  moveShelves={moveShelves} allBooks={allBooks} />
-            </div>
-          </div>
 
-          {/* search Button to open the input field to get books from api */}
-        <SearchBtn setSearchBooks={setSearchBooks} setShowSearchpage={setShowSearchpage} showSearchPage={showSearchPage}/>
-        
-        </div>
-      )}
-    </div>
+    <RouterProvider router={routes}/>
   );
 }
 
