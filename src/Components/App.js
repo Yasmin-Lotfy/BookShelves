@@ -47,19 +47,20 @@ function App() {
   // console.log(e.target.value);
   setQuery(e.target.value);
 }
-
+//  to handle option of book shelves on search books 
   let checkShelves = () => {
     if(searchBooks !== ""){
-      searchBooks.forEach((book)=>{
-        allBooks.forEach((testBook)=>{
-          if(book.id === testBook.id){
-            book.shelf = testBook.shelf
+      searchBooks.forEach((searchBookElement)=>{
+        allBooks.forEach((allBookElement)=>{
+          if(searchBookElement.id === allBookElement.id){
+            searchBookElement.shelf = allBookElement.shelf
           }
-        return 0})
-      return 0})
+        })
+      })
     }
     
   }
+  // -------------------------------------
 
 
 
