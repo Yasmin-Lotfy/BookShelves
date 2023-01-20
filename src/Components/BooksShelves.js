@@ -1,10 +1,22 @@
 import React from 'react'
 import BookShelf from './BookShelf'
 
+function removeDuplicates(allBooks) {
+  return allBooks.filter((item,
+    index) => allBooks.indexOf(item) === index);
+  }
+
 function BooksShelves({allBooks, moveShelves}) {
-    const currentlyReading = allBooks.filter((book)=>book.shelf === "currentlyReading")
-    const wantToRead = allBooks.filter((book)=>book.shelf === "wantToRead")
-    const read = allBooks.filter((book)=>book.shelf === "read")
+
+
+
+
+    allBooks = removeDuplicates(allBooks)
+
+    const currentlyReading = allBooks.filter((book)=>book.shelf === "currentlyReading");
+    const wantToRead = allBooks.filter((book)=>book.shelf === "wantToRead");
+    const read = allBooks.filter((book)=>book.shelf === "read");
+    console.log(currentlyReading);
 
     
 

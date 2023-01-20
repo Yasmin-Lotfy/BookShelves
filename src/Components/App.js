@@ -47,12 +47,24 @@ function App() {
   // console.log(e.target.value);
   setQuery(e.target.value);
 }
+// useEffect(() => {
+//   searchBooks.forEach((book)=>{
+//     allBooks.forEach((testBook)=>{
+//       if(book.id === testBook.id){
+//         book.shelf = testBook.shelf
+//       }
+//     return 0})
+//   return 0})
+  
+// }, [searchBooks])
+
 // calling the search api every time query updated
 useEffect(() => {
   console.log("called")
   if(query){
     BooksAPI.search(query,10).then(res =>{
       if(res.error){
+        console.log(res)
         setSearchError(true)
       }else{
         setSearchError(false)
@@ -64,6 +76,7 @@ useEffect(() => {
   }else if (query===""){
     console.log("empty query")
     setClearSearch(true)
+    console.log("after setting true")
   }
  
 }, [query])
@@ -83,16 +96,16 @@ console.log(searchBooks)
       }return upBook
     }  )
 console.log(newbooks)
-    // to remove the search book from search 
-    let filterSearch = updatedBooks.filter((bookRender)=> bookRender.id !== book.id)
-    setSearchBooks(filterSearch)
+    // // to remove the search book from search 
+    // let filterSearch = updatedBooks.filter((bookRender)=> bookRender.id !== book.id)
+    // setSearchBooks(filterSearch)
    
     // to add the searched book to book shelves 
+    console.log(newbooks)
+    BooksAPI.update(newbooks,shelfToMoveBookTo).then()
+
     setAllBooks([...allBooks , ...newbooks])
   }
-
-  console.log(allBooks)
-
  
   let routes = createBrowserRouter([
     {path:"/", Element:<MasterLayout/>,errorElement:<NotFound/>, children:[
