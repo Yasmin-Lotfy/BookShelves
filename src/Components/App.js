@@ -51,13 +51,20 @@ function App() {
 //  to handle option of book shelves on search books 
 let checkShelves = () => {
   if(searchBooks !== ""){
+console.log(searchBooks[0].shelf)
     searchBooks.forEach((searchBookElement)=>{
       allBooks.forEach((allBookElement)=>{
         if(searchBookElement.id === allBookElement.id){
           searchBookElement.shelf = allBookElement.shelf
+        }else{
+          if(searchBookElement.shelf===undefined){
+            searchBookElement.shelf="none"
+          }
         }
       })
     })
+    console.log(searchBooks)
+
   }
   
 }
@@ -85,13 +92,14 @@ useEffect(() => {
   }
  
 }, [query])
-console.log(searchBooks)
+console.log(searchBooks);
+
 
   
 
    // function to move books between shelves that we searched for
    let moveShelvesSearch = (book,shelfToMoveBookTo)=>{
-    console.log("kih")
+    console.log(book)
     let updatedBooks = searchBooks; //copy from api books
     let newbooks = updatedBooks.filter((upBook)=>{
       if(upBook.id === book.id){
@@ -99,7 +107,8 @@ console.log(searchBooks)
             // update books from api 
         BooksAPI.update(book,shelfToMoveBookTo).then()
         console.log(upBook)
-      }return upBook
+      }return upBook;
+      
     }  )
 console.log(newbooks)
     // // to remove the search book from search 

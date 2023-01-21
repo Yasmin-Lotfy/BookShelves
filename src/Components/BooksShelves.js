@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookShelf from './BookShelf'
 
 
 
 function BooksShelves({allBooks, moveShelves}) {
 
-  let removeDuplicates= (allBooks)=> {
-    return allBooks.filter((item,index) => allBooks.indexOf(item) === index);
+  // let removeDuplicates= (allBooks)=> {
+  //   return allBooks.filter((item,index) => allBooks.indexOf(item) === index);
+  //   }
+  let uniqueChars = [];
+allBooks.forEach((element) => {
+    if (!uniqueChars.includes(element)) {
+        uniqueChars.push(element);
     }
-
-
-    
-  
-      allBooks = removeDuplicates(allBooks)
-  
+});
+      // allBooks = ([...new Set(allBooks)])
+      console.log(uniqueChars)
       console.log(allBooks)
-    
-
-  
-
-
-    const currentlyReading = removeDuplicates(allBooks.filter((book)=>book.shelf === "currentlyReading"));
-    const wantToRead =removeDuplicates(allBooks.filter((book)=>book.shelf === "wantToRead"));
-    const read = removeDuplicates(allBooks.filter((book)=>book.shelf === "read"));
+    const currentlyReading = (allBooks.filter((book)=>book.shelf === "currentlyReading"));
+    const wantToRead =(allBooks.filter((book)=>book.shelf === "wantToRead"));
+    const read = (allBooks.filter((book)=>book.shelf === "read"));
     console.log(currentlyReading);
     console.log(wantToRead);
     console.log(read);

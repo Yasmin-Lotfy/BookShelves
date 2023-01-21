@@ -1,7 +1,7 @@
 import React from 'react'
 
 function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch}) {
-    console.log(searchBooks[0].imageLinks.thumbnail)
+    console.log(searchBooks)
   return (
    
      <>
@@ -26,7 +26,7 @@ function SearchResult({clearSearch, searchError,searchBooks, moveShelvesSearch})
                   ></div>
                   <div className="book-shelf-changer">
                     <select defaultValue={book.shelf} onChange={(e)=>moveShelvesSearch(book, e.target.value)} >
-                      <option value="none" disabled>
+                      <option  disabled>
                         Move to...
                       </option>
                       <option value="currentlyReading">Currently Reading</option>
